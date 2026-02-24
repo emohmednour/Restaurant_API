@@ -1,6 +1,6 @@
 ﻿
 using Microsoft.Extensions.DependencyInjection;
-using Restaurants.Application.Resturants;
+using Restaurants.Application.Restaurants;
 namespace Restaurants.Application.Extensions;
 
 public static class ServicesCollectionExtensions
@@ -8,6 +8,6 @@ public static class ServicesCollectionExtensions
     public static void AddApplication(this IServiceCollection services)
     {
         services.AddScoped<IRestaurantService, RestaurantService>();
-        services.AddAutoMapper(typeof(ServiceCollectionExtensions).Assembly);
+        services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
     }
 }

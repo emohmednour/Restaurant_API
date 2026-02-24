@@ -1,6 +1,6 @@
-﻿using Restaurants.Application.Resturants.DTOs;
+﻿using Restaurants.Application.Restaurants.DTOs;
 
-namespace Restaurants.Application.Resturants;
+namespace Restaurants.Application.Restaurants;
 
 public interface IRestaurantService
 {

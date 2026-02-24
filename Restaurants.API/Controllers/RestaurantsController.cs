@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
-using Restaurants.Application.Resturants;
-using Restaurants.Application.Resturants.DTOs;
+using Restaurants.Application.Restaurants;
+using Restaurants.Application.Restaurants.DTOs;
 
 namespace Restaurants.API.Controllers
 {

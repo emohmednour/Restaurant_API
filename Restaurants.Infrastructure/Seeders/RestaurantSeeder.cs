@@ -21,9 +21,9 @@ internal class RestaurantSeeder(RestaurantDbContext db) : IRestaurantSeeder
 
     }
 
-    private IEnumerable<Restaurantdto> GetResturants()
+    private IEnumerable<Restaurant> GetResturants()
     {
-        List<Restaurantdto> restaurants = [
+        List<Restaurant> restaurants = [
 
             new()
             {

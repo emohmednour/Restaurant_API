@@ -1,8 +1,9 @@
 ﻿using Restaurants.Domain.Entities;
 
 using AutoMapper;
+using Restaurants.Application.Restaurants.DTOs;
 
-namespace Restaurants.Application.Resturants.DTOs;
+namespace Restaurants.Application.Restaurants.DTOs;
 
 public class RestaurantProfile : Profile
 {

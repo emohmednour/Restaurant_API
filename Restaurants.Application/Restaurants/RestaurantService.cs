@@ -1,11 +1,11 @@
 ﻿using Restaurants.Domain.Entities;
 using Restaurants.Domain.Repositories;
 using Microsoft.Extensions.Logging;
-using Restaurants.Application.Resturants.DTOs;
+using Restaurants.Application.Restaurants.DTOs;
 using AutoMapper;
 
 
-namespace Restaurants.Application.Resturants;
+namespace Restaurants.Application.Restaurants;
 
 internal class RestaurantService(IRestaurantRepository resturantRepository,
      ILogger<RestaurantService> logger,IMapper mapper) : IRestaurantService
