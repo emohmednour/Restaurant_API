@@ -1,0 +1,30 @@
+@Restaurants.API_HostAddress = https://localhost:7001
+# @host = https://localhost
+# @port = 7005
+
+@host = https://localhost:7005
+
+GET {{host}}/api/restaurants 
+Accept: application/json
+###
+GET {{Restaurants.API_HostAddress}}/api/restaurants
+
+###
+
+POST {{Restaurants.API_HostAddress}}/api/restaurants
+Content-Type: application/json
+
+{
+  "Name": "Spicy Delights",
+  "Description": "A culinary experience like no other",
+  "Category": "Fine Dining",
+  "HasDelivery": true,
+  "ContactEmail": "info@gourmetdelights.com",
+  "ContactNumber": "555-123-4567",
+  "City": "Metropolis",
+  "Street": "456 Gourmet Avenue",
+  "PostalCode": "54321"
+
+}
+
+###
