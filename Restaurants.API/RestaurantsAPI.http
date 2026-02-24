@@ -1,17 +1,15 @@
-@Restaurants.API_HostAddress = https://localhost:7001
-# @host = https://localhost
-# @port = 7005
 
-@host = https://localhost:7005
 
-GET {{host}}/api/restaurants 
+@BaseUrl = https://localhost:7001
+
+GET {{BaseUrl}}/api/restaurants 
 Accept: application/json
 ###
-GET {{Restaurants.API_HostAddress}}/api/restaurants
+GET {{BaseUrl}}/api/restaurants/1
 
 ###
 
-POST {{Restaurants.API_HostAddress}}/api/restaurants
+POST {{BaseUrl}}/api/restaurants
 Content-Type: application/json
 
 {
