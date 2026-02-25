@@ -2,11 +2,11 @@
 using FluentValidation;
 using Restaurants.Application.Restaurants.DTOs;
 
-namespace Restaurants.Application.Restaurants.Validator;
+namespace Restaurants.Application.Restaurants.Commands.CreateRestaurant;
 
-internal class CreateRestsurantDtoValidator : AbstractValidator<CreateRestaurantDto>
+internal class CreateRestsurantCommandValidator : AbstractValidator<CreateRestaurantCommand>
 {
-    public CreateRestsurantDtoValidator()
+    public CreateRestsurantCommandValidator()
     {
         RuleFor(r => r.Description)
             .NotEmpty()

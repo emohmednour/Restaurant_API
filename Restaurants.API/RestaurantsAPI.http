@@ -1,6 +1,6 @@
 
 
-@BaseUrl = https://localhost:7001
+@BaseUrl=https://localhost:7001
 
 GET {{BaseUrl}}/api/restaurants 
 Accept: application/json
