@@ -19,7 +19,8 @@ public static class ServicesCollectionExtenstions
         var connectionString = configuration.GetConnectionString("RestaurantsDB");
         services.AddDbContext<RestaurantDbContext>(option =>
         {
-            option.UseSqlServer(connectionString);
+            option.UseSqlServer(connectionString)
+            .EnableSensitiveDataLogging();
         });
 
 

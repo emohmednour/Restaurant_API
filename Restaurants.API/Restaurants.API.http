@@ -1,6 +1,6 @@
 ﻿@Restaurants.API_HostAddress = https://localhost:7001
 
-GET {{Restaurants.API_HostAddress}}/api/restaurants/1
+GET {{Restaurants.API_HostAddress}}/api/restaurants
 
 ###
 POST {{Restaurants.API_HostAddress}}/api/restaurants
