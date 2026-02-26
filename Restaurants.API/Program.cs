@@ -15,22 +15,11 @@ builder.Services.AddApplication();
 builder.Services.AddInfrastructure(builder.Configuration);
 
 
-builder.Host.UseSerilog((context,confg) => 
+builder.Host.UseSerilog((context, confg) =>
+{
 
-    confg.
-    MinimumLevel.Override("Microsoft", LogEventLevel.Warning).
-    MinimumLevel.Override("Microsoft.EntityFrameWorkCore", LogEventLevel.Warning).
-    WriteTo.Console(outputTemplate:
-    " [{ Timestamp: dd - MM HH: mm: ss}\r\n{ Level: u3}] |{ SourceContext}| " +
-    "{ NewLine}\r\n{ Message: lj}\r\n{ NewLine}\r\n{ Exception}")
-
-);
-//builder.Host.UseSerilog((context,confg) => {
-
-//    confg.ReadFrom.Configuration(context.Configuration);
-//});
-
-//outputTemplate:" [{ Timestamp: dd - MM HH: mm: ss}{ Level: u3}] |{ SourceContext}| { NewLine}{ Message: lj}{ NewLine}{ Exception}
+    confg.ReadFrom.Configuration(context.Configuration);
+});
 
 var app = builder.Build();
 
