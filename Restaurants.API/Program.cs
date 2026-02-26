@@ -3,6 +3,7 @@ using Restaurants.Infrastructure.Extenstions;
 using Restaurants.Infrastructure.Seeders;
 using Serilog;
 using Serilog.Events;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
