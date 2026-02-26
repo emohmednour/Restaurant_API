@@ -9,8 +9,12 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
+
+//add two row to gen swagger  
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+
 builder.Services.AddApplication();
 builder.Services.AddInfrastructure(builder.Configuration);
 
@@ -33,14 +37,18 @@ await seeder.Seed();
 
 app.UseHttpsRedirection();
 app.UseSerilogRequestLogging();
-app.UseAuthorization();
 
-app.MapControllers();
-
-
+//for dev only not for prod
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+
+app.UseAuthorization();
+
+app.MapControllers();
+
+
 app.Run();
