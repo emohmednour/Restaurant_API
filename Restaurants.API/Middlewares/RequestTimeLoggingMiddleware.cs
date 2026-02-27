@@ -6,7 +6,6 @@ using System.Timers;
 
 namespace Restaurants.API.Middlewares;
 
-public class RequestTimeLoggingMiddleware(Logger<RequestTimeLoggingMiddleware> logger) : IMiddleware
 {
     public async Task InvokeAsync(HttpContext context, RequestDelegate next)
     {
