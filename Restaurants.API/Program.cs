@@ -16,6 +16,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<ErrorHandlingMiddleware>();
+builder.Services.AddScoped<RequestTimeLoggingMiddleware>();
 
 builder.Services.AddApplication();
 builder.Services.AddInfrastructure(builder.Configuration);
@@ -38,6 +39,7 @@ var seeder = scope.ServiceProvider.GetRequiredService<IRestaurantSeeder>();
 await seeder.Seed();
 
 app.UseMiddleware < ErrorHandlingMiddleware > ();
+app.UseMiddleware < RequestTimeLoggingMiddleware > ();
 app.UseHttpsRedirection();
 app.UseSerilogRequestLogging();
 
