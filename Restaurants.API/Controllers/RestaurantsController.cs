@@ -17,6 +17,7 @@ namespace Restaurants.API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<RestaurantDto>>> GetAll()
         {
+            
             var rest = await mediator.Send(new GetAllRestaurantsQuery());
             return Ok(rest);
 
@@ -25,12 +26,19 @@ namespace Restaurants.API.Controllers
         [HttpGet("{Id}")]
         public async Task<ActionResult<RestaurantDto>> GetById([FromRoute]int Id)
         {
+            try
+            {
+                var rest = await mediator.Send(new GetRestaurantByIdQuery(Id));
+                
 
-            var rest = await mediator.Send(new GetRestaurantByIdQuery(Id));
-            if (rest is null)
-                return NotFound();
+                return Ok(rest);
 
-            return Ok(rest);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500,"Some thing error");
+
+            }
         }
 
 
@@ -51,12 +59,12 @@ namespace Restaurants.API.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> DeleteRestaurant([FromRoute] int id)
         {
-            var IsDeleted = await mediator.Send(new DeleteRestaurantCommand(id));
+            await mediator.Send(new DeleteRestaurantCommand(id));
 
-            if (IsDeleted)
+            
                 return NoContent();
 
-            return NotFound();
+            
 
         }
 
@@ -67,11 +75,11 @@ namespace Restaurants.API.Controllers
         {
 
             command.Id = id;
-            var isUpdated = await mediator.Send(command);
-            if (isUpdated)
+            await mediator.Send(command);
+            
                 return NoContent();
 
-            return NotFound();
+          
         }
 
 
