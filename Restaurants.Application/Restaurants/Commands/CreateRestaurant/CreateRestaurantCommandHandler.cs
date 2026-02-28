@@ -8,13 +8,13 @@ namespace Restaurants.Application.Restaurants.Commands.CreateRestaurant;
 
 public class CreateRestaurantCommandHandler(ILogger<CreateRestaurantCommandHandler> logger
     , IMapper mapper,
-    IRestaurantRepository restaurantRepository) : IRequestHandler<CreateRestaurantCommand, int>
+    IRestaurantsRepoSitory RestaurantsRepository) : IRequestHandler<CreateRestaurantCommand, int>
 {
     public async Task<int> Handle(CreateRestaurantCommand request, CancellationToken cancellationToken)
     {
         logger.LogInformation("Creating restaurant {@Restaurant}",request);
         var restaurant = mapper.Map<Restaurant>(request);
-        var Id = await restaurantRepository.Create(restaurant);
+        var Id = await RestaurantsRepository.Create(restaurant);
         return Id;
     }
 }

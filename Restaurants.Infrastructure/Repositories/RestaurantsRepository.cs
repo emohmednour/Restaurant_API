@@ -6,7 +6,7 @@ using Restaurants.Domain.Entities;
 
 namespace Restaurants.Infrastructure.Repositories;
 
-internal class RestaurantRepository(RestaurantDbContext dbcontext) : IRestaurantRepository
+internal class RestaurantsRepository(RestaurantDbContext dbcontext) : IRestaurantsRepoSitory
 {
     public async Task<int> Create(Restaurant restaurant)
     {

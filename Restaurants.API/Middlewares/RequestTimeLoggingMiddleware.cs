@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
 
 namespace Restaurants.API.Middlewares;
-public class RequestTimeLoggingMiddlewre(ILogger<RequestTimeLoggingMiddlewre> logger) : IMiddleware
+public class RequestTimeLoggingMiddleware(ILogger<RequestTimeLoggingMiddleware> logger) : IMiddleware
 {
     public async Task InvokeAsync(HttpContext context, RequestDelegate next)
     {
