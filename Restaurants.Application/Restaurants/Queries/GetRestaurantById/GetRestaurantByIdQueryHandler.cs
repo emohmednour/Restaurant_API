@@ -10,7 +10,7 @@ namespace Restaurants.Application.Restaurants.Queries.GetRestaurantById;
 
 public class GetRestaurantByIdQueryHandler(ILogger<GetRestaurantByIdQueryHandler> logger,
     IMapper mapper,
-    IRestaurantsRepoSitory RestaurantsRepository)
+    IRestaurantsRepository RestaurantsRepository)
     : IRequestHandler<GetRestaurantByIdQuery, RestaurantDto>
 {
    

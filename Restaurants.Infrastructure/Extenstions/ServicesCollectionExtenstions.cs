@@ -25,7 +25,7 @@ public static class ServicesCollectionExtenstions
 
 
         services.AddScoped<IRestaurantSeeder, RestaurantSeeder>();
-        services.AddScoped<IRestaurantsRepoSitory, RestaurantsRepository>();
+        services.AddScoped<IRestaurantsRepository, RestaurantsRepository>();
         services.AddScoped<IDishesRepository, DishesRepository>();
     }
 

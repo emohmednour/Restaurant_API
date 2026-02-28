@@ -8,7 +8,7 @@ using Restaurants.Domain.Repositories;
 namespace Restaurants.Application.Dishes.Conmmands.CreateDish;
 
 public class CreateDishCommandHandler(ILogger<CreateDishCommandHandler> logger,
-    IMapper mapper,IRestaurantsRepoSitory RestaurantsRepository,
+    IMapper mapper,IRestaurantsRepository RestaurantsRepository,
     IDishesRepository dishesRepository) : IRequestHandler<CreateDishCommand>
 {
     public async Task Handle(CreateDishCommand request, CancellationToken cancellationToken)

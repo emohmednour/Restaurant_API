@@ -8,7 +8,7 @@ namespace Restaurants.Application.Restaurants.Commands.CreateRestaurant;
 
 public class CreateRestaurantCommandHandler(ILogger<CreateRestaurantCommandHandler> logger
     , IMapper mapper,
-    IRestaurantsRepoSitory RestaurantsRepository) : IRequestHandler<CreateRestaurantCommand, int>
+    IRestaurantsRepository RestaurantsRepository) : IRequestHandler<CreateRestaurantCommand, int>
 {
     public async Task<int> Handle(CreateRestaurantCommand request, CancellationToken cancellationToken)
     {
