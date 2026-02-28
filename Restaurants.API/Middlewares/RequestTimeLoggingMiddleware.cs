@@ -1,8 +1,4 @@
-﻿
-using Azure;
-using Microsoft.AspNetCore.Http;
-using System.Diagnostics;
-using System.Timers;
+﻿using System.Diagnostics;
 
 namespace Restaurants.API.Middlewares;
 public class RequestTimeLoggingMiddlewre(ILogger<RequestTimeLoggingMiddlewre> logger) : IMiddleware
