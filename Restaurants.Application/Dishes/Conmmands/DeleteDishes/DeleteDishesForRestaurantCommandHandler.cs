@@ -14,7 +14,9 @@ public class DeleteDishesForRestaurantCommandHandler
     public async Task Handle(DeleteDishesForRestaurantCommand request, CancellationToken cancellationToken)
     {
 
-        logger.LogInformation("Deleting Dishes  for restaurant with id : {restaurantid}", request.RestaurantId);
+
+        logger.LogWarning("Deleting Dishes  for restaurant with id : {restaurantid}", request.RestaurantId);
+
 
         var restaurant = await restaurantsRepository.GetAsync(request.RestaurantId)
             ?? throw new NotFoundException(nameof(Restaurant), request.RestaurantId.ToString());
