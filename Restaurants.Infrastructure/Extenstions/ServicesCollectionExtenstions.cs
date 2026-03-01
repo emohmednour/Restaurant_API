@@ -7,6 +7,7 @@ using Restaurants.Infrastructure.Repositories;
 
 using Restaurants.Infrastructure.Seeders;
 using Restaurants.Domain.Repositories;
+using Restaurants.Domain.Entities;
 
 namespace Restaurants.Infrastructure.Extenstions;
 
@@ -22,6 +23,9 @@ public static class ServicesCollectionExtenstions
             option.UseSqlServer(connectionString)
             .EnableSensitiveDataLogging();
         });
+
+        services.AddIdentityApiEndpoints<User>()
+                .AddEntityFrameworkStores<RestaurantDbContext>();
 
 
         services.AddScoped<IRestaurantSeeder, RestaurantSeeder>();

@@ -87,3 +87,14 @@ Content-Type: application/json
 }
 
 ###
+
+POST {{Restaurants.API_HostAddress}}/register
+Content-Type: application/json
+
+{
+  "email": "Test@gmail.com",
+  "password": "test"
+}
+
+
+###
