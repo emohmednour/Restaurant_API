@@ -16,9 +16,12 @@ namespace Restaurants.API.Controllers
         public  async Task<IActionResult> Create([FromRoute]int restaurantId, CreateDishCommand command)
         {
             command.ResturantID = restaurantId;
-            await mediator.Send(command);
+           var dishId= await mediator.Send(command);
 
-            return Created();
+            return CreatedAtAction(nameof(GetDishForRestaurant), new 
+            {   restaurantId = restaurantId,
+                dishId = dishId
+            },null);
         }
         [HttpGet]
         public async Task<ActionResult<IEnumerable<DishDto>>> GetAllForRestaurant([FromRoute] int restaurantId) {
@@ -30,7 +33,7 @@ namespace Restaurants.API.Controllers
         }
 
         [HttpGet("{dishId}")]
-        public async Task<ActionResult<DishDto>> GetAllForRestaurant([FromRoute] int restaurantId, [FromRoute] int dishId) {
+        public async Task<ActionResult<DishDto>> GetDishForRestaurant([FromRoute] int restaurantId, [FromRoute] int dishId) {
 
 
             var result =  await mediator.Send(new GetDishForRestaurantQuery(restaurantId,dishId));

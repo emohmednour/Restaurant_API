@@ -46,7 +46,7 @@ Content-Type: application/json
 
 ###
 
-GET {{Restaurants.API_HostAddress}}/api/restaurants/4/dishes
+GET https://localhost:7001/api/restaurants/1/dishes/10
 
 ###
 
@@ -55,7 +55,7 @@ GET {{Restaurants.API_HostAddress}}/api/restaurants/1/dishes/7
 ###
 
 @restaurantId=1
-GET {{Restaurants.API_HostAddress}}/api/restaurants/{{restaurantId}}/dishes
+GET {{Restaurants.API_HostAddress}}/api/restaurants/1/dishes
 
 ###
 
@@ -76,5 +76,14 @@ DELETE {{Restaurants.API_HostAddress}}/api/restaurants/{{restaurantId}}/dishes
 ###
 
 GET {{Restaurants.API_HostAddress}}/api/restaurants/1/dishes
+
+###
+
+POST {{Restaurants.API_HostAddress}}/api/restaurants/{restaurantId}/dishes
+Content-Type: application/json
+
+{
+  //CreateDishCommand
+}
 
 ###

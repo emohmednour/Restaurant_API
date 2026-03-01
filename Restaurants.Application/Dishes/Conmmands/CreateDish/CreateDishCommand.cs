@@ -2,7 +2,7 @@
 
 namespace Restaurants.Application.Dishes.Conmmands.CreateDish;
 
-public  class CreateDishCommand : IRequest
+public  class CreateDishCommand : IRequest<int>
 {
     public string Name { get; set; } = default!;
     public string Description { get; set; } = default!;
