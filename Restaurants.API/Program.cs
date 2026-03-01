@@ -1,4 +1,5 @@
 using Microsoft.OpenApi.Models;
+using Restaurants.API.Extensions;
 using Restaurants.API.Middlewares;
 using Restaurants.Application.Extensions;
 using Restaurants.Domain.Entities;
@@ -9,27 +10,11 @@ using Serilog.Events;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 
-builder.Services.AddControllers();
-
-//add two row to gen swagger  
- 
-builder.Services.AddEndpointsApiExplorer(); // add this line to show identity endpoint in swagger
-builder.Services.AddSwaggerGen();
-
-builder.Services.AddScoped<ErrorHandlingMiddleware>();
-builder.Services.AddScoped<RequestTimeLoggingMiddleware>();
-
+builder.AddPresentation();
 builder.Services.AddApplication();
 builder.Services.AddInfrastructure(builder.Configuration);
 
-
-builder.Host.UseSerilog((context, confg) =>
-{
-
-    confg.ReadFrom.Configuration(context.Configuration);
-});
 
 var app = builder.Build();
 
@@ -53,7 +38,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.MapIdentityApi<User>();
+app.MapGroup("api/Identity").MapIdentityApi<User>();
 
 
 app.UseAuthorization();
