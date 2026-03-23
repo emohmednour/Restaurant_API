@@ -1,6 +1,9 @@
 ﻿@Restaurants.API_HostAddress = https://localhost:7001
+@token = gireigu
+
 
 GET {{Restaurants.API_HostAddress}}/api/restaurants
+Authorization  : Bearer {{token}}
 
 ###
 POST {{Restaurants.API_HostAddress}}/api/restaurants
@@ -88,7 +91,15 @@ Content-Type: application/json
 
 ###
 
-POST {{Restaurants.API_HostAddress}}/register
+POST {{Restaurants.API_HostAddress}}/api/identity/register
+Content-Type: application/json
+
+{
+  "email": "Test@gmail.com",
+  "password": "test"
+}
+###
+POST {{Restaurants.API_HostAddress}}/api/identity/login
 Content-Type: application/json
 
 {
@@ -99,6 +110,5 @@ Content-Type: application/json
 
 ###
 
-GET {{Restaurants.API_HostAddress}}/api/restaurants
 
-###
+

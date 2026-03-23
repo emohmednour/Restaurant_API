@@ -6,7 +6,6 @@ using Restaurants.Domain.Entities;
 using Restaurants.Infrastructure.Extenstions;
 using Restaurants.Infrastructure.Seeders;
 using Serilog;
-using Serilog.Events;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,7 +27,6 @@ await seeder.Seed();
 
 app.UseMiddleware < ErrorHandlingMiddleware > ();
 app.UseMiddleware < RequestTimeLoggingMiddleware > ();
-app.UseHttpsRedirection();
 app.UseSerilogRequestLogging();
 
 //for dev only not for prod
@@ -37,6 +35,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseHttpsRedirection();
 
 app.MapGroup("api/Identity").MapIdentityApi<User>();
 

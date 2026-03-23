@@ -10,6 +10,7 @@ public static  class WebApplicationBuilderExtension
 {
     public static void AddPresentation(this WebApplicationBuilder builder)
     {
+        builder.Services.AddAuthentication();
         builder.Services.AddControllers();
 
         //add two row to gen swagger  
