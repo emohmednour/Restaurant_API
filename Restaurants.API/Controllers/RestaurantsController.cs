@@ -8,6 +8,7 @@ using Restaurants.Application.Restaurants.Commands.CreateRestaurant;
 using Restaurants.Application.Restaurants.Commands.DeleteRestaurant;
 using Restaurants.Application.Restaurants.Commands.UpdateRestaurant;
 using Microsoft.AspNetCore.Authorization;
+using Restaurants.Domain.Constant;
 namespace Restaurants.API.Controllers
 {
 
@@ -46,6 +47,7 @@ namespace Restaurants.API.Controllers
 
 
         [HttpPost]
+        [Authorize(Roles = UserRoles.Owner)]
         public async Task<IActionResult> CreateRestaurant([FromBody] CreateRestaurantCommand restaurantCommand  )
         {
             if (restaurantCommand is null)
