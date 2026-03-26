@@ -9,6 +9,7 @@ using Restaurants.Infrastructure.Seeders;
 using Restaurants.Domain.Repositories;
 using Restaurants.Domain.Entities;
 using Microsoft.AspNetCore.Identity;
+using Restaurants.Infrastructure.Authorization;
 
 namespace Restaurants.Infrastructure.Extenstions;
 
@@ -27,6 +28,7 @@ public static class ServicesCollectionExtenstions
 
         services.AddIdentityApiEndpoints<User>()
             .AddRoles<IdentityRole>()
+            .AddClaimsPrincipalFactory<RestaurantsUserClaimsPrincipalFactory>()
                 .AddEntityFrameworkStores<RestaurantDbContext>();
 
 
