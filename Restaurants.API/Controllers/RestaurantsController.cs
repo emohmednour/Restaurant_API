@@ -9,6 +9,7 @@ using Restaurants.Application.Restaurants.Commands.DeleteRestaurant;
 using Restaurants.Application.Restaurants.Commands.UpdateRestaurant;
 using Microsoft.AspNetCore.Authorization;
 using Restaurants.Domain.Constant;
+using Restaurants.Infrastructure.Authorization;
 namespace Restaurants.API.Controllers
 {
 
@@ -28,6 +29,7 @@ namespace Restaurants.API.Controllers
         }
 
         [HttpGet("{Id}")]
+        [Authorize(Policy =AppClaimsType.Nationality)]
         public async Task<ActionResult<RestaurantDto>> GetById([FromRoute]int Id)
         {
             try
