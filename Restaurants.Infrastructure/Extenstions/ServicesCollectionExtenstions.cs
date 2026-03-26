@@ -10,6 +10,7 @@ using Restaurants.Domain.Repositories;
 using Restaurants.Domain.Entities;
 using Microsoft.AspNetCore.Identity;
 using Restaurants.Infrastructure.Authorization;
+using Restaurants.Infrastructure.Authorization.Requirements;
 
 namespace Restaurants.Infrastructure.Extenstions;
 
@@ -40,7 +41,14 @@ public static class ServicesCollectionExtenstions
             .AddPolicy(PolicyNames.HasNationality, policy =>
             {
                 policy.RequireClaim(AppClaimsType.Nationality, "German", "Polish");
-            });
+            })
+            .AddPolicy(PolicyNames.AtLeast20,policy=>
+            {
+                policy.AddRequirements(new MinmumAgeRequirement(20));
+            })
+            
+            ;
+
             
     }
 

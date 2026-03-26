@@ -21,8 +21,14 @@ public  class UserContext(IHttpContextAccessor httpContextAccessor) :IUserContex
         var roles = user.Claims.
             Where(c => c.Type == ClaimTypes.Role)
             .Select(c => c.Value);
+        var nationality = user.FindFirst(c => c.Type == "Nationality")?.Value;
+        var DateOfBirthString = user.FindFirst(c => c.Type == "DateOfBirth")?.Value;
+        var DateOfBirth = DateOfBirthString == null 
+            ? (DateOnly?)null 
+            : DateOnly.ParseExact(DateOfBirthString,"yyyy-MM-dd");
 
-        return new CurrentUser(userId,email, roles);
+
+        return new CurrentUser(userId,email, roles,nationality,DateOfBirth);
     }
     
 }
