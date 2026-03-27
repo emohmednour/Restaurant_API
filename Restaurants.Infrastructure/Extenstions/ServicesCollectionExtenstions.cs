@@ -49,7 +49,8 @@ public static class ServicesCollectionExtenstions
             
             ;
 
-            
+            //we forget inject mnimum in DI
+            // services.AddScoped<IAuthorizationHandler,MinmumAgeRequirementHandler>();
     }
 
 
