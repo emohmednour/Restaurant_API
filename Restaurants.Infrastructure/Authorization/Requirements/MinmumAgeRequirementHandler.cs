@@ -5,7 +5,7 @@ using Restaurants.Application.Users;
 
 namespace Restaurants.Infrastructure.Authorization.Requirements;
 
-public class MinmumAgeRequirementHandler(Logger<MinmumAgeRequirementHandler> logger,IUserContext userContext) : AuthorizationHandler<MinmumAgeRequirement>
+public class MinmumAgeRequirementHandler(ILogger<MinmumAgeRequirementHandler> logger,IUserContext userContext) : AuthorizationHandler<MinmumAgeRequirement>
 {
     protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, MinmumAgeRequirement requirement)
     {

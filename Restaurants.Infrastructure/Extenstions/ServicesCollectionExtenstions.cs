@@ -49,11 +49,21 @@ public static class ServicesCollectionExtenstions
             {
                 policy.AddRequirements(new MinmumAgeRequirement(20));
             })
-            
+            .AddPolicy(PolicyNames.AtLeast2Restaurants,policy=>{
+
+                policy.AddRequirements(new CreatedMultipleRestaurantsRequirement(2));
+            })
+
             ;
+
+            
+            
 
             //we forget inject mnimum in DI
              services.AddScoped<IAuthorizationHandler ,MinmumAgeRequirementHandler>();
+
+        services.AddScoped<IAuthorizationHandler, CreatedMultipleRestaurantsRequirementHandler>();
+
         services.AddScoped<IRestaurantAuthorizationService, RestaurantAuthorizationService>();
     }
 

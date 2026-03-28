@@ -96,7 +96,7 @@ Content-Type: application/json
 
 {
 
-  "email": "user@test.com",
+  "email": "owner2@test.com",
 "password": "Test123*"
 
 }
@@ -106,7 +106,7 @@ Content-Type: application/json
 
 {
   
-  "email": "Test1@gmail.com",
+  "email": "admin@gmail.com",
 "password": "Test123*"
 }
 
