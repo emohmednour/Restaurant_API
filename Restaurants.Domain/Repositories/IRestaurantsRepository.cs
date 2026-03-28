@@ -8,4 +8,6 @@ public interface IRestaurantsRepository
     Task<int> Create(Restaurant restaurant);
     Task Delete(Restaurant rest);
     Task SaveChanges();
+
+    Task<IEnumerable<Restaurant>> GetAllMatchingAsync(string? searchPhrase);
 }
