@@ -12,6 +12,8 @@ using Microsoft.AspNetCore.Identity;
 using Restaurants.Infrastructure.Authorization;
 using Restaurants.Infrastructure.Authorization.Requirements;
 using Microsoft.AspNetCore.Authorization;
+using Restaurants.Domain.Interfaces;
+using Restaurants.Infrastructure.Authorization.Services;
 
 namespace Restaurants.Infrastructure.Extenstions;
 
@@ -52,6 +54,7 @@ public static class ServicesCollectionExtenstions
 
             //we forget inject mnimum in DI
              services.AddScoped<IAuthorizationHandler ,MinmumAgeRequirementHandler>();
+        services.AddScoped<IRestaurantAuthorizationService, RestaurantAuthorizationService>();
     }
 
 

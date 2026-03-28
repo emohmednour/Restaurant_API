@@ -15,8 +15,13 @@ public class CreateRestaurantCommandHandler(ILogger<CreateRestaurantCommandHandl
     {
         var user = usercontext.GetCurrentUser();
         logger.LogInformation("User:{Email} with id [{userId}] Creating restaurant {@Restaurant}",user.Email,user.Id,request);
+
+
+
         var restaurant = mapper.Map<Restaurant>(request);
         restaurant.OwnerId = user.Id;
+
+        
         var Id = await RestaurantsRepository.Create(restaurant);
         return Id;
     }
