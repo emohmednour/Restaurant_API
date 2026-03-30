@@ -14,7 +14,7 @@ namespace Restaurants.Application.Users.Tests
 
 
 
-            //Assign 
+            //Arrange 
             var user = new CurrentUser("1", "test@test.com", [UserRoles.Admin, UserRoles.User], null, null);
              
             //act
@@ -30,13 +30,15 @@ namespace Restaurants.Application.Users.Tests
         }
 
         [Fact()]
-        public void IsInRole_WithnotMatchingRole_ShouldReturnFalse()
+        public void IsInRole_WithNOtMatchingRole_ShouldReturnFalse()
         {
 
 
 
 
-            //Assign 
+            //Arrange 
+
+
             var user = new CurrentUser("1", "test@test.com", [UserRoles.Admin, UserRoles.User], null, null);
 
             //act
@@ -58,7 +60,7 @@ namespace Restaurants.Application.Users.Tests
 
 
 
-            //Assign 
+            //Arrange 
             var user = new CurrentUser("1", "test@test.com", [UserRoles.Admin, UserRoles.User], null, null);
 
             //act

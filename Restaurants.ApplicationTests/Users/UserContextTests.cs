@@ -14,7 +14,7 @@ namespace Restaurants.Application.Users.Tests
         public void GetCurrentUser_WithAuthorizationUser_ShouldReturnCurrentUser()
         {
 
-            //assign
+            //Arrange 
             var httpContextAccessorMock = new Mock<IHttpContextAccessor > ();
 
             var dateOfBirth =new  DateOnly(1999, 1, 1);
@@ -67,7 +67,7 @@ namespace Restaurants.Application.Users.Tests
         [Fact()]
         public void GetCurrentUser_WithUserContextNotPresent_ThrowInvalidOperationException(){
 
-            //assign
+            //Arrange 
             var httpContextAccessorMock = new Mock<IHttpContextAccessor>();
 
             httpContextAccessorMock.Setup(x => x.HttpContext).Returns((HttpContext?)null);
