@@ -1,4 +1,5 @@
-﻿using FluentValidation.TestHelper;
+﻿
+using FluentValidation.TestHelper;
 using Xunit;
 
 namespace Restaurants.Application.Restaurants.Commands.CreateRestaurant.Tests;
@@ -10,14 +11,15 @@ public class CreateRestaurantCommandValidatorTests
     {
         //arrange
 
-        var command = new CreateRestaurantCommand() {
-            
+        var command = new CreateRestaurantCommand()
+        {
+
             Name = "Test rest",
             Category = "Italian",
             ContactEmail = "test@test.com",
             PostalCode = "12-999"
-        
-        
+
+
         };
 
         var validator = new CreateRestaurantCommandValidator();
@@ -38,14 +40,15 @@ public class CreateRestaurantCommandValidatorTests
     {
         //arrange
 
-        var command = new CreateRestaurantCommand() {
-            
+        var command = new CreateRestaurantCommand()
+        {
+
             Name = "Te",
             Category = "Egyptian",
             ContactEmail = "test",
             PostalCode = "12999"
-        
-        
+
+
         };
 
         var validator = new CreateRestaurantCommandValidator();
@@ -58,10 +61,10 @@ public class CreateRestaurantCommandValidatorTests
 
         //assert
 
-        result.ShouldHaveValidationErrorFor(x=>x.Name);
-        result.ShouldHaveValidationErrorFor(x=>x.Category);
-        result.ShouldHaveValidationErrorFor(x=>x.ContactEmail);
-        result.ShouldHaveValidationErrorFor(x=>x.PostalCode);
+        result.ShouldHaveValidationErrorFor(x => x.Name);
+        result.ShouldHaveValidationErrorFor(x => x.Category);
+        result.ShouldHaveValidationErrorFor(x => x.ContactEmail);
+        result.ShouldHaveValidationErrorFor(x => x.PostalCode);
 
     }
     [Theory]
@@ -79,9 +82,9 @@ public class CreateRestaurantCommandValidatorTests
         var command = new CreateRestaurantCommand()
         {
 
-          
+
             Category = category
-            
+
 
 
         };
@@ -97,7 +100,7 @@ public class CreateRestaurantCommandValidatorTests
         //assert
 
         result.ShouldNotHaveValidationErrorFor(x => x.Category);
-     
+
 
     }
 
@@ -109,7 +112,7 @@ public class CreateRestaurantCommandValidatorTests
     [InlineData("ab-ddd")]
     [InlineData("12 366")]
     [InlineData("14-8 5")]
-    public void Validator_ForValidPostalCode_ShouldnotHaveError(string PostalCode )
+    public void Validator_ForValidPostalCode_ShouldnotHaveError(string PostalCode)
     {
         //arrange
 
@@ -139,4 +142,6 @@ public class CreateRestaurantCommandValidatorTests
 
 
     }
+
+   
 }
