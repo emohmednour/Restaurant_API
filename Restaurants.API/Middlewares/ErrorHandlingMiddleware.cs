@@ -1,4 +1,4 @@
-﻿
+﻿ 
 using Microsoft.AspNetCore.Http.HttpResults;
 using Restaurants.Domain.Exceptions;
 
