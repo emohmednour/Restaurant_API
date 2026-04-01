@@ -20,7 +20,9 @@ public class GetAllRestaurantsQueryHandler(ILogger<GetAllRestaurantsQueryHandler
         var (restaurants,totalcount) = await RestaurantsRepository.GetAllMatchingAsync(
             request.searchPhrase,
             request.PageSize,
-            request.PageNumber,request.SortBy, request.sortDirection
+            request.PageNumber,
+            request.SortBy,
+            request.sortDirection
             );
 
 
