@@ -30,22 +30,15 @@ namespace Restaurants.API.Controllers
         }
 
         [HttpGet("{Id}")]
-        [Authorize(Policy =AppClaimsType.Nationality)]
+        //[Authorize(Policy =AppClaimsType.Nationality)]
         public async Task<ActionResult<RestaurantDto>> GetById([FromRoute]int Id)
         {
-            try
-            {
+            
                 var rest = await mediator.Send(new GetRestaurantByIdQuery(Id));
                 
 
                 return Ok(rest);
 
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500,"Some thing error");
-
-            }
         }
 
 
