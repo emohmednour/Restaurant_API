@@ -7,48 +7,61 @@ using Restaurants.Infrastructure.Extenstions;
 using Restaurants.Infrastructure.Seeders;
 using Serilog;
 
-var builder = WebApplication.CreateBuilder(args);
 
 
-builder.AddPresentation();
-builder.Services.AddApplication();
-builder.Services.AddInfrastructure(builder.Configuration);
-
-
-var app = builder.Build();
-
-// Configure the HTTP request pipeline.
-
-
-var scope = app.Services.CreateScope();
-var seeder = scope.ServiceProvider.GetRequiredService<IRestaurantSeeder>();
-
-await seeder.Seed();
-
-app.UseMiddleware < ErrorHandlingMiddleware > ();
-app.UseMiddleware < RequestTimeLoggingMiddleware > ();
-app.UseSerilogRequestLogging();
-
-//for dev only not for prod
-if (app.Environment.IsDevelopment())
+try
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    var builder = WebApplication.CreateBuilder(args);
+
+
+    builder.AddPresentation();
+    builder.Services.AddApplication();
+    builder.Services.AddInfrastructure(builder.Configuration);
+
+
+    var app = builder.Build();
+
+    // Configure the HTTP request pipeline.
+
+
+    var scope = app.Services.CreateScope();
+    var seeder = scope.ServiceProvider.GetRequiredService<IRestaurantSeeder>();
+
+    await seeder.Seed();
+
+    app.UseMiddleware<ErrorHandlingMiddleware>();
+    app.UseMiddleware<RequestTimeLoggingMiddleware>();
+    app.UseSerilogRequestLogging();
+
+    //for dev only not for prod
+    if (app.Environment.IsDevelopment())
+    {
+        app.UseSwagger();
+        app.UseSwaggerUI();
+    }
+
+    app.UseHttpsRedirection();
+
+    app.MapGroup("api/Identity").
+        WithTags("Identity").
+        MapIdentityApi<User>();
+
+
+    app.UseAuthorization();
+
+    app.MapControllers();
+
+
+    app.Run();
 }
+catch (Exception ex)
+{
 
-app.UseHttpsRedirection();
-
-app.MapGroup("api/Identity").
-    WithTags("Identity").
-    MapIdentityApi<User>();
-
-
-app.UseAuthorization();
-
-app.MapControllers();
-
-
-app.Run();
-
+    Log.Fatal(ex, "Application startup failed");
+}
+finally
+{
+    Log.CloseAndFlush();
+}
 
 public partial class Program { }
