@@ -10,6 +10,7 @@ using Restaurants.Application.Restaurants.Commands.UpdateRestaurant;
 using Microsoft.AspNetCore.Authorization;
 using Restaurants.Domain.Constant;
 using Restaurants.Infrastructure.Authorization;
+using Restaurants.Application.Restaurants.Commands.UpdateRestaurantLogo;
 namespace Restaurants.API.Controllers
 {
 
@@ -55,6 +56,29 @@ namespace Restaurants.API.Controllers
 
         }
 
+
+        [HttpPost("{id}/logo")]
+        public async Task<IActionResult> UploadLogo([FromRoute]int id ,IFormFile file)
+        {
+
+            using var stream = file.OpenReadStream();
+
+            var command = new UpdateRestaurantLogoCommand
+            {
+                RestaurantId = id,
+                FileName = file.FileName,
+                file = stream
+            };
+
+            await mediator.Send(command);
+
+            return NoContent();
+
+
+        }
+
+
+
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -82,7 +106,8 @@ namespace Restaurants.API.Controllers
 
           
         }
-
+        
+       
 
 
     }

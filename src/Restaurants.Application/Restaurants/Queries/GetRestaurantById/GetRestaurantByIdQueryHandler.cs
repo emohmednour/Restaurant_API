@@ -6,6 +6,7 @@ using Restaurants.Application.Restaurants.Queries.GetRestaurant;
 
 using Restaurants.Domain.Entities;
 using Restaurants.Domain.Exceptions;
+using Restaurants.Domain.Interfaces;
 using Restaurants.Domain.Repositories;
 namespace Restaurants.Application.Restaurants.Queries.GetRestaurantById;
 
@@ -29,6 +30,7 @@ public class GetRestaurantByIdQueryHandler(ILogger<GetRestaurantByIdQueryHandler
 
 
         var restaurantDTO = mapper.Map<RestaurantDto>(restaurant);
+
 
 
         return restaurantDTO;

@@ -21,4 +21,5 @@ public class Restaurant
 
     public User Owner { get; set; }
     public string OwnerId { get; set; }
+    public string? LogoUrl { get; set; }
 }
