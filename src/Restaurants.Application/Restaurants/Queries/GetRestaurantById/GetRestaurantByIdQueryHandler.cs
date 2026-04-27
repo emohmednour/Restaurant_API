@@ -12,7 +12,8 @@ namespace Restaurants.Application.Restaurants.Queries.GetRestaurantById;
 
 public class GetRestaurantByIdQueryHandler(ILogger<GetRestaurantByIdQueryHandler> logger,
     IMapper mapper,
-    IRestaurantsRepository RestaurantsRepository
+    IRestaurantsRepository RestaurantsRepository,
+    IBlobStorageService blobStorageService
    )
     : IRequestHandler<GetRestaurantByIdQuery, RestaurantDto>
 {
@@ -31,7 +32,7 @@ public class GetRestaurantByIdQueryHandler(ILogger<GetRestaurantByIdQueryHandler
 
         var restaurantDTO = mapper.Map<RestaurantDto>(restaurant);
 
-
+        restaurantDTO.LogoSasUrl = blobStorageService.GetBlobSasUrl(restaurant.LogoUrl);
 
         return restaurantDTO;
     }
