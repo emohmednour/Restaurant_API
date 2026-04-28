@@ -9,7 +9,7 @@ using Restaurants.Domain.Constant;
 namespace Restaurants.API.Controllers
 {
     [ApiController]
-    [Route("api/indentity")]
+    [Route("api/identity")]
     public class IdentityController(IMediator mediator) : ControllerBase
     {
         [HttpPatch("user")]

@@ -66,7 +66,7 @@ namespace Restaurants.API.Controllers
             var command = new UpdateRestaurantLogoCommand
             {
                 RestaurantId = id,
-                FileName = file.FileName,
+                FileName = $"{id}?{file.FileName}",
                 file = stream
             };
 
