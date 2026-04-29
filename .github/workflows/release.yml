@@ -24,12 +24,12 @@ jobs:
       - name: Build
         run: dotnet build --no-restore -c Release
       - name: Publich
-        run: dotnet publish ./src/Restaurants.API/Restaurants.API.csproj -o ./api  --no-build
+        run: dotnet publish ./src/Restaurants.API/Restaurants.API.csproj -o ./publish  --no-build
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v4
         with:
           name: api-artifact 
-          path: ./api
+          path: ./publish
 
  # Job 2 - Deploy Dev
   deploy-dev:
@@ -47,6 +47,7 @@ jobs:
          with:
           app-name: restaurants-api-dev
           publish-profile: ${{secrets.PUBLISH_PROFILE_DEV}}
+          package: ./publish
      
 
 
@@ -60,12 +61,13 @@ jobs:
          uses: actions/download-artifact@v4
          with:
           name: api-artifact 
-          path:  ./api
+          path:  ./publish
        - name:  Deploy to Prod
          uses: Azure/webapps-deploy@v2.2.19
          with:
           app-name: restaurants-api-prod
           publish-profile: ${{secrets.PUBLISH_PROFILE_PROD}}
+          package: ./publish
    
 
 
