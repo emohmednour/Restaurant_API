@@ -1,7 +1,6 @@
 name: Restaurant Api CD
 
-on: 
-  
+on:
   push:
     branches: [master]
 
@@ -12,74 +11,63 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name:  Checkout
+      - name: Checkout
         uses: actions/checkout@v6.0.2
 
       - name: Setup .NET Core SDK
         uses: actions/setup-dotnet@v5.2.0
         with:
           dotnet-version: 8.0.x
-      - name: Restore Dependancies
+
+      - name: Restore Dependencies
         run: dotnet restore
+
       - name: Build
         run: dotnet build --no-restore -c Release
-      - name: Publich
-        run: dotnet publish ./src/Restaurants.API/Restaurants.API.csproj -o ./publish  --no-build
-      - name: Upload a Build Artifact
+
+      - name: Publish
+        run: dotnet publish ./src/Restaurants.API/Restaurants.API.csproj -c Release -o ./publish --no-build
+
+      - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: api-artifact 
+          name: api-artifact
           path: ./publish
 
- # Job 2 - Deploy Dev
+
   deploy-dev:
-     runs-on: ubuntu-latest
-     needs: build
+    runs-on: ubuntu-latest
+    needs: build
 
-     steps: 
-       - name: Download a Build Artifact
-         uses: actions/download-artifact@v4
-         with:
-          name: api-artifact 
-          path: $DOTNET_ROOT/api
-       - name:  Deploy to Dev
-         uses: Azure/webapps-deploy@v2.2.19
-         with:
+    steps:
+      - name: Download Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: api-artifact
+          path: ./publish
+
+      - name: Deploy to Dev
+        uses: Azure/webapps-deploy@v2.2.19
+        with:
           app-name: restaurants-api-dev
-          publish-profile: ${{secrets.PUBLISH_PROFILE_DEV}}
+          publish-profile: ${{ secrets.PUBLISH_PROFILE_DEV }}
           package: ./publish
-     
 
 
- # Job 2 - Deploy Dev
   deploy-prod:
-     runs-on: ubuntu-latest
-     needs: build
+    runs-on: ubuntu-latest
+    needs: build
 
-     steps: 
-       - name: Download a Build Artifact
-         uses: actions/download-artifact@v4
-         with:
-          name: api-artifact 
-          path:  ./publish
-       - name:  Deploy to Prod
-         uses: Azure/webapps-deploy@v2.2.19
-         with:
+    steps:
+      - name: Download Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: api-artifact
+          path: ./publish
+
+      - name: Deploy to Prod
+        uses: Azure/webapps-deploy@v2.2.19
+        with:
           app-name: restaurants-api-prod
-          publish-profile: ${{secrets.PUBLISH_PROFILE_PROD}}
+          publish-profile: ${{ secrets.PUBLISH_PROFILE_PROD }}
           package: ./publish
-   
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
