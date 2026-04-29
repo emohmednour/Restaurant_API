@@ -26,7 +26,7 @@ jobs:
       - name: Publich
         run: dotnet publish ./src/Restaurants.API/Restaurants.API.csproj --no-build -o $DOTNET_ROOT/api
       - name: Upload a Build Artifact
-        uses: actions/upload-artifact@v7.0.1
+        uses: actions/upload-artifact@v4
         with:
           name: api-artifact 
           path: $DOTNET_ROOT/api
@@ -38,7 +38,7 @@ jobs:
 
      steps: 
        - name: Download a Build Artifact
-         uses: actions/download-artifact@v3.1.0
+         uses: actions/download-artifact@v4
          with:
           name: api-artifact 
           path: $DOTNET_ROOT/api
@@ -57,7 +57,7 @@ jobs:
 
      steps: 
        - name: Download a Build Artifact
-         uses: actions/download-artifact@v3.1.0
+         uses: actions/download-artifact@v4
          with:
           name: api-artifact 
           path: $DOTNET_ROOT/api
